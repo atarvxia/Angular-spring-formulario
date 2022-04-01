@@ -1,0 +1,44 @@
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Fecha de nacimiento</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Region</th>
+            <th scope="col">Comuna</th>
+            <th scope="col">Borrar registro</th>
+            <th scope="col">Editar registro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let empleado of empleados">
+            <td>{{ empleado.id }}</td>
+            <td>{{ empleado.nombre }}</td>
+            <td>{{empleado.apellido}}</td>
+            <td>{{empleado.correo}}</td>
+            <td>{{empleado.fechaNacimiento}}</td>
+            <td>(+56) 9 {{empleado.telefono}}</td>
+            <td>{{empleado.region}}</td>
+            <td>{{empleado.comuna}}</td>
+            <td>
+            <button type="button" class="btn btn-danger" (click)="delete(empleado.id)">
+              Borrar
+            </button>
+            </td>
+            <td>
+              <a routerLink="/editarempleado" style="color:black">
+              <button type="button" class="btn btn-info" (click)="edit(empleado.id)">
+                Editar
+              </button>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -1,0 +1,112 @@
+<div class="card my-5">
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #empleadoForm="ngForm">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" [(ngModel)]="empleado.nombre" 
+            minlength="2"
+            maxlength="20"
+            class="form-control" 
+            id="nombre" 
+            name="nombre" 
+            placeholder="Ingresa tu nombre"
+            required #nombre="ngModel">
+        </div>
+        <div [hidden]="!nombre.pristine" class="alert alert-danger">Nombre es requerido</div>
+        <div class="form-group">
+          <label for="apellido">Apellido</label>
+          <input type="text" [(ngModel)]="empleado.apellido" 
+            minlength="2"
+            maxlength="20"
+            class="form-control" 
+            id="apellido" 
+            name="apellido" 
+            placeholder="Ingresa tu apellido"
+            required #apellido="ngModel">
+          <div [hidden]="!apellido.pristine" class="alert alert-danger">Apellido is required</div>
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo</label>
+            <input type="email" [(ngModel)]= "empleado.correo"
+            pattern=".+@(gmail|hotmail)\.com" 
+            class="form-control"
+            id="correo"
+            name="correo"
+            placeholder="Ingresa tu correo"
+            required #correo = "ngModel">
+            <div [hidden]="!correo.pristine" class="alert alert-danger">Correo es obligatorio</div>            
+        </div>
+        <div class="form-group">
+            <label for="fechaNacimiento">Fecha de nacimiento</label>
+            <input type="date" [(ngModel)]= "empleado.fechaNacimiento"
+            min="1900-01-01" max="2022-04-01"
+            class="form-control"
+            id="fechaNacimiento"
+            name="fechaNacimiento"
+            placeholder="Ingresa tu fecha de nacimiento"
+            required #fechaNacimiento = "ngModel">
+            <div [hidden]="!fechaNacimiento.pristine" class="alert alert-danger">Fecha de nacimiento es obligatoria</div>            
+        </div>
+        <div class="form-group">
+            <label for="telefono">Telefono</label>
+            <input type="text" [(ngModel)]= "empleado.telefono"
+            minlength="9"
+            maxlength="9"
+            class="form-control"
+            id="telefono"
+            name="telefono"
+            placeholder="Ingresa tu telefono (+56) 9"
+            required #telefono = "ngModel">
+        </div>
+        <div [hidden]="!telefono.pristine" class="alert alert-danger">
+        Telefono es obligatorio y el numero debe tener un largo de 9 dígitos
+        </div>        
+        <div class="form-group">
+            <label for="region">Region</label>
+            <select type="text" [(ngModel)]= "empleado.region"
+            class="form-control"
+            id="region"
+            name="region"
+            (change)="onChange($event.target)"
+            placeholder="Ingresa tu region"
+            required #region = "ngModel">
+            <option value="Arica-Parinacota">Arica-Parinacota</option>
+            <option value="Tarapacá">Tarapacá</option>
+            <option value="Antofagasta">Antofagasta</option>
+            <option value="Atacama">Atacama</option>
+            <option value="Coquimbo">Coquimbo</option>
+            <option value="Valparaíso">Valparaíso</option>
+            <option value="Metropolitana">Metropolitana</option>
+            <option value="O'Higgins">O'Higgins</option>
+            <option value="Maule">Maule</option>
+            <option value="Ñuble">Ñuble</option>
+            <option value="Bío Bío">Bío Bío</option>
+            <option value="Araucanía">Araucanía</option>
+            <option value="Los Ríos">Los Ríos</option>
+            <option value="Los Lagos">Los Lagos</option>
+            <option value="Aysén">Aysén</option>
+            <option value="Magallanes y Antártica Chilena">Magallanes y Antártica Chilena</option>
+            </select>
+            <div [hidden]="!region.pristine" class="alert alert-danger">Region es obligatorio</div>
+        </div>
+        <div>
+        </div> 
+        <div class="form-group">
+            <label for="comuna">Comuna</label>
+            <select type="text" [(ngModel)]= "empleado.comuna"
+            class="form-control"
+            id="comuna"
+            name="comuna"
+            placeholder="Ingresa tu comuna"
+            required #comuna = "ngModel">
+            <option *ngFor="let comuna of comunas" ngvalue="comuna" id={{comuna}}>
+              {{comuna}}
+              </option >
+            </select>
+            <div [hidden]="!comuna.pristine" class="alert alert-danger">Comuna es obligatorio</div>
+        </div>                       
+        <button type="submit" [disabled]="!empleadoForm.form.valid" 
+          class="btn btn-info">Submit</button>
+      </form>
+    </div>
+  </div>
